@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int passThePillow(int n, int time) {
+        int sec=n-1;
+        int x=time/sec;
+        int y=time%sec;
+        int j;
+        if(x%2!=0)
+        {
+int i=n;
+while(y!=0)
+{
+    i--;
+    y--;
+}
+return i;
+        }
+
+         else
+        {
+int i=1;
+while(y!=0)
+{
+    i++;
+    y--;
+}
+return i;
+        }
+
+
+
+    }
+};
