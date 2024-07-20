@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int>row;
+        vector<int>col;
+        vector<int>answer;
+        
+        
+        for(int i=0;i<matrix.size();i++)
+        {
+            int min=INT_MAX;
+            for(int j=0;j<matrix[0].size();j++)
+            {
+if(matrix[i][j]<min)
+{
+    min=matrix[i][j];
+}
+            }
+            row.push_back(min);
+        }
+
+        for(int i=0;i<matrix[0].size();i++)
+        {
+            int max=INT_MIN;
+            for(int j=0;j<matrix.size();j++)
+            {
+if(matrix[j][i]>max)
+{
+    max=matrix[j][i];
+}
+            }
+            col.push_back(max);
+        }
+
+for(int i=0;i<matrix.size();i++)
+        {
+            
+            for(int j=0;j<matrix[0].size();j++)
+            {
+if(row[i]==matrix[i][j]&&col[j]==matrix[i][j])
+{
+    answer.push_back(matrix[i][j]);
+}
+            }
+           
+        }
+        return answer;
+    }
+};
