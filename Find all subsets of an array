@@ -1,14 +1,11 @@
 class Solution {
-public:
-    
-    vector<vector<int> > ans; //Global Variable
-    //vector is a Dynamic Data structure similar to array but unlike array we do not need to declare its size in advance
+  public:
+  
+    vector<vector<int> > ans;
     
     void helper(vector <int> A,vector<int>temp, int i){
         if (i==A.size()){            //Base Case
-           if (temp.size() == k && accumulate(temp.begin(), temp.end(), 0) == target) {
-                ans.push_back(temp);
-            }
+          ans.push_back(temp);
             return;
         }
         
@@ -20,12 +17,12 @@ public:
         
         return;
     }
-  
-    vector<vector<int>> subsets(vector<int>& nums) {
-        
 
-vector<int> temp;
-        helper(nums,temp,0);
+    vector<vector<int> > subsets(vector<int>& a) {
+        // code here
+        
+        vector<int> temp;
+          helper(a,temp,0);
         sort(ans.begin(),ans.end()); //this is to sort the array
         return ans;
     }
