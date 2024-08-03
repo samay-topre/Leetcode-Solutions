@@ -1,0 +1,32 @@
+class Solution {
+public:
+    
+    vector<vector<int> > ans; //Global Variable
+    //vector is a Dynamic Data structure similar to array but unlike array we do not need to declare its size in advance
+    
+    void helper(vector <int> A,vector<int>temp, int i){
+        if (i==A.size()){            //Base Case
+           if (temp.size() == k && accumulate(temp.begin(), temp.end(), 0) == target) {
+                ans.push_back(temp);
+            }
+            return;
+        }
+        
+        temp.push_back(A[i]); //Appends or adds element at the end
+        helper(A,temp,i+1);   //Inclusion or Take condition
+        
+        temp.pop_back();      //Removes an element from the end
+        helper(A,temp,i+1);    //Exclusion or not-take condition
+        
+        return;
+    }
+  
+    vector<vector<int>> subsets(vector<int>& nums) {
+        
+
+vector<int> temp;
+        helper(nums,temp,0);
+        sort(ans.begin(),ans.end()); //this is to sort the array
+        return ans;
+    }
+};
