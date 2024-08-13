@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int>> ans;
+
+    void help(vector<int>& temp, vector<int>& candidates, int start, int target, int k) {
+        // If the current subset size is k and the target is reached
+        if (temp.size() == k && target == 0) {
+            ans.push_back(temp);
+            return;
+        }
+        
+        // If the current subset size exceeds k, no need to proceed further
+        if (temp.size() > k) return;
+
+        for (int i = start; i < candidates.size(); ++i) {
+            // Skip duplicates
+            if (i > start && candidates[i] == candidates[i - 1]) continue;
+
+            // If the current candidate is greater than the remaining target, break (since array is sorted)
+            if (candidates[i] > target) break;
+
+            // Include the current candidate and recurse
+            temp.push_back(candidates[i]);
+            help(temp, candidates, i + 1, target - candidates[i], k);
+            temp.pop_back();  // Backtrack
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target, int k) {
+        sort(candidates.begin(), candidates.end());  // Sort to help skip duplicates
+        vector<int> temp;
+        help(temp, candidates, 0, target, k);
+        return ans;
+    }
+};
